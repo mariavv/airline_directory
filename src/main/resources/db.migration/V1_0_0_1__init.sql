@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS airline
     alliance_id          integer,
     iata_code            integer NOT NULL,
     icao_code            integer NOT NULL,
-    low_cost_carrier     bit  NOT NULL,
+    low_cost_carrier     bit NOT NULL,
     name                 varchar(255) NOT NULL,
     website              varchar(255),
     created              timestamp NOT NULL,
