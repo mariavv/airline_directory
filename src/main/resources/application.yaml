@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/airline_directory
+    username: postgres
+    password: 123
+  sql:
+    init:
+      platform: postgresql
+      mode: always
