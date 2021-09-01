@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface AirlineRepository extends JpaRepository<AirlineEntity, Integer> {
-    List<AirlineEntity> findByName(String name);
+    List<AirlineEntity> findByNameContains(String name);
 
     List<AirlineEntity> findByIataCode(String iataCode);
 

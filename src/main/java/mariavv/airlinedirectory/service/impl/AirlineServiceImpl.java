@@ -26,7 +26,7 @@ public class AirlineServiceImpl implements AirlineService {
     @Transactional(readOnly = true)
     @Override
     public List<AirlineResponse> getByName(@NotNull String name) {
-        return airlineRepository.findByName(name)
+        return airlineRepository.findByNameContains(name)
                 .stream()
                 .map(airlineMapper::toResponse)
                 .collect(Collectors.toList());
