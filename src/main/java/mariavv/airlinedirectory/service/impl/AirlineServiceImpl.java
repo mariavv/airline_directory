@@ -25,7 +25,7 @@ public class AirlineServiceImpl implements AirlineService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<AirlineResponse> getAirlineByName(@NotNull String name) {
+    public List<AirlineResponse> getByName(@NotNull String name) {
         return airlineRepository.findByName(name)
                 .stream()
                 .map(airlineMapper::toResponse)
@@ -34,7 +34,7 @@ public class AirlineServiceImpl implements AirlineService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<AirlineResponse> getAirlineByIataCode(@NotNull String iataCode) {
+    public List<AirlineResponse> getByIataCode(@NotNull String iataCode) {
         return airlineRepository.findByIataCode(iataCode)
                 .stream()
                 .map(airlineMapper::toResponse)
@@ -43,7 +43,7 @@ public class AirlineServiceImpl implements AirlineService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<AirlineResponse> getAirlineByIcaoCode(@NotNull String icaoCode) {
+    public List<AirlineResponse> getByIcaoCode(@NotNull String icaoCode) {
         return airlineRepository.findByIcaoCode(icaoCode)
                 .stream()
                 .map(airlineMapper::toResponse)

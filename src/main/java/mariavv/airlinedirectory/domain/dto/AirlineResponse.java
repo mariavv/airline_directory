@@ -1,15 +1,15 @@
 package mariavv.airlinedirectory.domain.dto;
 
 public class AirlineResponse {
-    private final Integer id;
+    private final Long id;
     private final Integer allianceId;
-    private final Integer iataCode;
-    private final Integer icaoCode;
+    private final String iataCode;
+    private final String icaoCode;
     private final Boolean lowCostCarrier;
     private final String name;
     private final String website;
 
-    public AirlineResponse(Integer id, Integer allianceId, Integer iataCode, Integer icaoCode, Boolean lowCostCarrier, String name, String website) {
+    public AirlineResponse(Long id, Integer allianceId, String iataCode, String icaoCode, Boolean lowCostCarrier, String name, String website) {
         this.id = id;
         this.allianceId = allianceId;
         this.iataCode = iataCode;
@@ -19,7 +19,7 @@ public class AirlineResponse {
         this.website = website;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -27,11 +27,11 @@ public class AirlineResponse {
         return allianceId;
     }
 
-    public Integer getIataCode() {
+    public String getIataCode() {
         return iataCode;
     }
 
-    public Integer getIcaoCode() {
+    public String getIcaoCode() {
         return icaoCode;
     }
 
