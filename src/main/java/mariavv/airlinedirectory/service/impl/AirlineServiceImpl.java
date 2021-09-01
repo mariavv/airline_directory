@@ -6,6 +6,8 @@ import mariavv.airlinedirectory.mapper.AirlineMapper;
 import mariavv.airlinedirectory.repo.AirlineRepository;
 import mariavv.airlinedirectory.service.AirlineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +27,8 @@ public class AirlineServiceImpl implements AirlineService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<AirlineResponse> getByName(@NotNull String name) {
-        return airlineRepository.findByNameContains(name)
+    public List<AirlineResponse> getByName(@NonNull String name, @NonNull Pageable pageable) {
+        return airlineRepository.findByNameContains(name, pageable)
                 .stream()
                 .map(airlineMapper::toResponse)
                 .collect(Collectors.toList());
@@ -34,7 +36,7 @@ public class AirlineServiceImpl implements AirlineService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<AirlineResponse> getByIataCode(@NotNull String iataCode) {
+    public List<AirlineResponse> getByIataCode(@NonNull String iataCode) {
         return airlineRepository.findByIataCode(iataCode)
                 .stream()
                 .map(airlineMapper::toResponse)
@@ -43,7 +45,7 @@ public class AirlineServiceImpl implements AirlineService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<AirlineResponse> getByIcaoCode(@NotNull String icaoCode) {
+    public List<AirlineResponse> getByIcaoCode(@NonNull String icaoCode) {
         return airlineRepository.findByIcaoCode(icaoCode)
                 .stream()
                 .map(airlineMapper::toResponse)

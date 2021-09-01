@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,18 +65,46 @@ public class AirlineServiceImplTest extends BaseTest {
 
     @Test
     void getByName() {
+        int pageSize = 10;
+        int pageNumber = 0;
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+
         String name = "Air";
 
         List<AirlineResponse> list = testData.stream()
                 .filter(e -> e.getName().contains(name))
                 .collect(Collectors.toList());
 
-        when(airlineMapper.toResponseList(airlineRepository.findByNameContains(name)))
-                .thenReturn(list);
+        when(airlineMapper.toResponseList(airlineRepository.findByNameContains(name, pageRequest)))
+                .thenReturn(new PageImpl<>(
+                        pageSize < testData.size()
+                                ? testData.stream()
+                                .limit(pageSize)
+                                .collect(Collectors.toList())
+                                : testData,
+                        pageRequest,
+                        testData.size()));
 
-        List<AirlineResponse> airlines = airlineService.getByName(name);
+        List<AirlineResponse> airlines = airlineService.getByName(name, pageRequest);
 
         assertNotNull(airlines);
         assertEquals(list, airlines);
     }
 }
+
+    when(deliveryRepository.findAll(pageRequest))
+        .thenReturn(
+        new PageImpl<>(
+        pageSize < testData.size()
+        ? testData.stream()
+        .limit(pageSize)
+        .collect(Collectors.toList())
+        : testData,
+        pageRequest,
+        testData.size()));
+
+        Page<Delivery> page = deliveryService.getList(pageRequest);
+
+        assertNotNull(page);
+        assertEquals(Math.min(pageSize, testData.size()), page.getContent().size());
+        assertEquals(testData.size(), page.getTotalElements());
