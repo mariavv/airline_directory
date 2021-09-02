@@ -1,6 +1,5 @@
 package mariavv.airlinedirectory.service.impl;
 
-import com.sun.istack.NotNull;
 import mariavv.airlinedirectory.domain.dto.AirlineResponse;
 import mariavv.airlinedirectory.mapper.AirlineMapper;
 import mariavv.airlinedirectory.repo.AirlineRepository;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +25,7 @@ public class AirlineServiceImpl implements AirlineService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<AirlineResponse> getByName(@NotNull String name) {
+    public List<AirlineResponse> getByName(NotNull String name) {
         return airlineRepository.findByNameContains(name)
                 .stream()
                 .map(airlineMapper::toResponse)
