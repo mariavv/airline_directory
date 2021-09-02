@@ -1,15 +1,15 @@
 package mariavv.airlinedirectory.domain.dto;
 
 public class AllianceResponse {
-    private final Integer id;
+    private final Long id;
     private final String name;
 
-    public AllianceResponse(Integer id, String name) {
+    public AllianceResponse(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

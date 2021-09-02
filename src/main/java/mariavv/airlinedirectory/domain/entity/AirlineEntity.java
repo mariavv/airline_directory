@@ -11,17 +11,17 @@ public class AirlineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "alliance_id", referencedColumnName = "id")
     private AllianceEntity alliance;
 
     @Column(name = "iata_code")
-    private Integer iataCode;
+    private String iataCode;
 
     @Column(name = "icao_code")
-    private Integer icaoCode;
+    private String icaoCode;
 
     @Column(name = "low_cost_carrier")
     private Boolean lowCostCarrier;
@@ -39,7 +39,7 @@ public class AirlineEntity {
     public AirlineEntity() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -47,11 +47,11 @@ public class AirlineEntity {
         return alliance;
     }
 
-    public Integer getIataCode() {
+    public String getIataCode() {
         return iataCode;
     }
 
-    public Integer getIcaoCode() {
+    public String getIcaoCode() {
         return icaoCode;
     }
 
@@ -71,11 +71,11 @@ public class AirlineEntity {
         this.alliance = alliance;
     }
 
-    public void setIataCode(Integer iataCode) {
+    public void setIataCode(String iataCode) {
         this.iataCode = iataCode;
     }
 
-    public void setIcaoCode(Integer icaoCode) {
+    public void setIcaoCode(String icaoCode) {
         this.icaoCode = icaoCode;
     }
 

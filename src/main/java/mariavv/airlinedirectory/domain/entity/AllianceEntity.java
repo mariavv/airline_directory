@@ -8,7 +8,7 @@ public class AllianceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -16,7 +16,7 @@ public class AllianceEntity {
     public AllianceEntity() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
